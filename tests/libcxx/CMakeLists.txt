@@ -60,3 +60,6 @@ endforeach (testcase)
 
 add_enclave_test(tests/libcxxtest-is_convertible_regression libcxx_host
                  libcxxtest-is_convertible_regression_enc)
+
+add_enclave_test(tests/libcxxtest-gcc13_release_regression libcxx_host
+                 libcxxtest-gcc13_release_regression_enc)

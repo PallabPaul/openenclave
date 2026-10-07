@@ -191,3 +191,11 @@ endforeach (testcase)
 
 add_libcxx_test_enc("is_convertible_regression"
                     "${CMAKE_CURRENT_SOURCE_DIR}/is_convertible_regression.cpp")
+
+add_libcxx_test_enc("gcc13_release_regression"
+                    "${CMAKE_CURRENT_SOURCE_DIR}/gcc13_release_regression.cpp")
+# These diagnostics require optimization, even in an otherwise Debug build.
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  enclave_compile_options(libcxxtest-gcc13_release_regression_enc PRIVATE -O2
+                          -Wall -Wextra -Werror)
+endif ()
