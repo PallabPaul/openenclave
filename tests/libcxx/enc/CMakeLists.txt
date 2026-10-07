@@ -188,3 +188,6 @@ foreach (testcase ${alltests})
 
   add_libcxx_test_enc("${name}" "${testcase}")
 endforeach (testcase)
+
+add_libcxx_test_enc("is_convertible_regression"
+                    "${CMAKE_CURRENT_SOURCE_DIR}/is_convertible_regression.cpp")

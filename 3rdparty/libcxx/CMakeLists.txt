@@ -28,6 +28,16 @@ ExternalProject_Add(
           ${LIBCXX_INCLUDES}/__config
   INSTALL_COMMAND "")
 
+# Patch the collected headers before consumers or installation can use them.
+# Keep the downloaded, checksum-verified upstream sources unchanged.
+ExternalProject_Add_Step(
+  libcxx_includes gcc13_headers
+  COMMAND ${CMAKE_COMMAND} -DHEADER=${LIBCXX_INCLUDES}/type_traits -P
+          ${CMAKE_CURRENT_LIST_DIR}/patch_gcc13_headers.cmake
+  DEPENDEES build
+  DEPENDERS install
+  DEPENDS ${CMAKE_CURRENT_LIST_DIR}/patch_gcc13_headers.cmake)
+
 set_property(DIRECTORY PROPERTY ADDITIONAL_MAKE_CLEAN_FILES ${LIBCXX_INCLUDES})
 
 add_enclave_library(

@@ -57,3 +57,6 @@ foreach (testcase ${alltests})
 
   add_enclave_test(tests/libcxxtest-${name} libcxx_host libcxxtest-${name}_enc)
 endforeach (testcase)
+
+add_enclave_test(tests/libcxxtest-is_convertible_regression libcxx_host
+                 libcxxtest-is_convertible_regression_enc)
